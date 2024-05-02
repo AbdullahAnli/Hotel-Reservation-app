@@ -24,12 +24,12 @@ public class RoomService {
         return roomRepository.getRoomByRoomNumber(roomNumber);
 
     }
-    @Override
+
     public void saveOrUpdateRoom(Room room){
         roomRepository.save(room);
     }
     public  void deleteRoom(Long id){
-        //16 40
+        roomRepository.deleteById(id);
 
     }
 
