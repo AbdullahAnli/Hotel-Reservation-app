@@ -14,21 +14,24 @@ public class RoomService {
     private RoomRepository roomRepository;
 
 
-    public List<Room>getAllRooms(){
+    public List<Room> getAllRooms() {
         return roomRepository.findAll();
     }
-    public Optional<Room> getRoomById(Long id){
+
+    public Optional<Room> getRoomById(Long id) {
         return roomRepository.findById(id);
     }
-    public Optional<Room> getRoomByRoomNumber(String roomNumber){
+
+    public Optional<Room> getRoomByRoomNumber(String roomNumber) {
         return roomRepository.getRoomByRoomNumber(roomNumber);
 
     }
 
-    public void saveOrUpdateRoom(Room room){
+    public void saveOrUpdateRoom(Room room) {
         roomRepository.save(room);
     }
-    public  void deleteRoom(Long id){
+
+    public void deleteRoom(Long id) {
         roomRepository.deleteById(id);
 
     }
