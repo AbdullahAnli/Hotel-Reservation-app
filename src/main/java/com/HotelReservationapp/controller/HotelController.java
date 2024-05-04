@@ -54,6 +54,14 @@ public class HotelController {
         redirectAttributes.addFlashAttribute("successMessage","Hotel added successfully");
         return "redirect:/hotels";
     }
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id,Model model){
+        Hotel  hotel=hotelService.getHotelById(id)
+                .orElseThrow(()-> new IllegalArgumentException("invalid hotel id :"+id));
+        model.addAttribute("hotel",hotel);
+        return "hotel-form";
+    }
+
 
 
 
