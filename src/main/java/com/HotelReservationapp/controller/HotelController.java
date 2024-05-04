@@ -61,6 +61,23 @@ public class HotelController {
         model.addAttribute("hotel",hotel);
         return "hotel-form";
     }
+    @PostMapping("/edit/{id}")
+    public String updateHotel(@PathVariable Long id,Hotel hotel,BindingResult result,
+                              RedirectAttributes redirectAttributes){
+        if (result.hasErrors()){
+            return "hotel-form";
+        }
+        hotel.setId(id);
+        hotelService.SaveOrUpdateHotel(hotel);
+        redirectAttributes.addFlashAttribute("successMessage","Hotel update successfully");
+        return "redirect:/hotels";
+    }
+    public String deleteHotel(@PathVariable Long id,RedirectAttributes redirectAttributes){
+        hotelService.DeleteHotel(id);
+        redirectAttributes.addFlashAttribute("successMessage ","Hotel deleted successfully");
+        return "redirect:/hotels";
+    }
+
 
 
 
