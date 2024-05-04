@@ -31,7 +31,7 @@ public class RoomController {
         return "room-details";
     }
     @GetMapping("/room-number/{roomNumber}")
-    public  String  getRoomByRoomNumber(@PathVariable String roomNumber,Model model){
+    public  String  getRoomByRoomNumber(@PathVariable int roomNumber,Model model){
         Room room= roomService.getRoomByRoomNumber(roomNumber)
                 .orElseThrow(()-> new IllegalArgumentException("Invalid room number: "+roomNumber));
         model.addAttribute("room",room);
