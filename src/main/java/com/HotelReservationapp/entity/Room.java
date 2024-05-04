@@ -13,7 +13,7 @@ public class Room {
     private boolean isAvailable;
     private int capacity;
     @ManyToOne
-    @JoinColumn(name = "hotel_id",nullable = false)
+    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
     public Room(){
