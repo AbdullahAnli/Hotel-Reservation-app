@@ -3,6 +3,7 @@ package com.HotelReservationapp.controller;
 import com.HotelReservationapp.dao.HotelRepository;
 import com.HotelReservationapp.entity.Hotel;
 import com.HotelReservationapp.service.HotelService;
+import com.HotelReservationapp.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import java.util.List;
 public class HotelController {
     @Autowired
     private HotelService hotelService;
+    @Autowired
+    private RoomService roomServiceService;
 
     @GetMapping
     public String getAllHotels(Model model){
@@ -44,6 +47,13 @@ public class HotelController {
     public String showHotelForm(Model model){
         model.addAttribute("hotel",new Hotel());
         return "hotel-form";
+    }
+    @GetMapping("/new/rooms")
+    public String showHotelRoomForm(Model model){
+        model.addAttribute("hotel",new Hotel());
+        model.addAttribute("rooms",roomServiceService.getAllRooms());
+
+        return "hotel-room-form";
     }
     @PostMapping
     public String addHotel(Hotel hotel , BindingResult result, RedirectAttributes redirectAttributes){
@@ -72,6 +82,7 @@ public class HotelController {
         redirectAttributes.addFlashAttribute("successMessage","Hotel update successfully");
         return "redirect:/hotels";
     }
+    @GetMapping("/delete/{id}")
     public String deleteHotel(@PathVariable Long id,RedirectAttributes redirectAttributes){
         hotelService.DeleteHotel(id);
         redirectAttributes.addFlashAttribute("successMessage ","Hotel deleted successfully");
