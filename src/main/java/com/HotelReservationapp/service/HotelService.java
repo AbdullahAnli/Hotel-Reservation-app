@@ -16,14 +16,14 @@ public class HotelService {
     @Autowired
     private HotelRepository hotelRepository;
 
-    public List<Hotel>getAllHoteells(){
+    public List<Hotel>getAllHotels(){
         return hotelRepository.findAll();
     }
     public Optional<Hotel>getHotelById(Long id){
         return hotelRepository.findById(id);
     }
-    public Optional<Hotel>getHotelByCity(String city) {
-       return hotelRepository.getHotelByCity(city);
+    public List<Hotel>getHotelsByCity(String city) {
+       return hotelRepository.getHotelsByCity(city);
     }
     public void SaveOrUpdateHotel(Hotel hotel){
         hotelRepository.save(hotel);
